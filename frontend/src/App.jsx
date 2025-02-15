@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import ReagentsList from './ReagentsList';
 import AddReagent from './AddReagent';
 import SearchReagents from './SearchReagents';

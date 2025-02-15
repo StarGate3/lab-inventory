@@ -30,8 +30,8 @@ def add_reagent(reagent: schemas.ReagentCreate, db: Session = Depends(get_db)):
     return crud.create_reagent(db=db, reagent=reagent)
 
 @app.get("/search/")
-def search_reagents(name: str = None, cas_number: str = None, db: Session = Depends(get_db)):
-    return crud.search_reagents(db=db, name=name, cas_number=cas_number)
+def search_reagents(name: str = None, cas_number: str = None, smiles: str = None, room: str = None, storage: str = None, shelf: str = None, db: Session = Depends(get_db)):
+    return crud.search_reagents(db=db, name=name, cas_number=cas_number, smiles=smiles, room=room, storage=storage, shelf=shelf)
 
 @app.post("/search_by_structure/")
 def search_by_structure(query_smiles: schemas.StructureSearch, db: Session = Depends(get_db)):

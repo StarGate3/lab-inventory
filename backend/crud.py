@@ -14,12 +14,15 @@ def create_reagent(db: Session, reagent: schemas.ReagentCreate):
         db.rollback()
         raise HTTPException(status_code=400, detail="Reagent with this CAS number already exists.")
 
-def search_reagents(db: Session, name: str = None, cas_number: str = None, room: str = None, storage: str = None, shelf: str = None):
+
+def search_reagents(db: Session, name: str = None, cas_number: str = None, smiles: str = None, room: str = None, storage: str = None, shelf: str = None):
     query = db.query(models.Reagent)
     if name:
         query = query.filter(models.Reagent.name.ilike(f"%{name}%"))
     if cas_number:
         query = query.filter(models.Reagent.cas_number.ilike(f"%{cas_number}%"))
+    if smiles:
+        query = query.filter(models.Reagent.smiles.ilike(f"%{smiles}%"))
     if room:
         query = query.filter(models.Reagent.room.ilike(f"%{room}%"))
     if storage:
